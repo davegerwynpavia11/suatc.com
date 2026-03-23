@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My School</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    /* IMAGE BACKGROUND */
+    .main-image {
+      width: 100%;
+      height: calc(100vh - 70px);
+      object-fit: cover;
+      display: block;
+    }
+
+   
+
+    .hero-container {
+      display: flex;
+      width: 100%;
+      color: white;
+    }
+
+    /* LEFT TEXT */
+    .left {
+      width: 50%;
+    }
+
+    .left h1 {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .left p {
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      background: #a6ff4d;
+      border: none;
+      margin-right: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* RIGHT SLIDER */
+    .right {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .slider {
+      position: relative;
+      width: 350px;
+    }
+
+    .card {
+      display: none;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .card.active {
+      display: block;
+    }
+
+    .card span {
+      float: right;
+    }
+
+    /* BUTTONS */
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .prev { left: -40px; }
+    .next { right: -40px; }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ST. URIEL ACADEMY OF TAGUIG CITY, INC.</div>
+  <nav>
+    <a href="website.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="programs.html">Programs</a>
+    <a href="events.html">Events</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- BACKGROUND IMAGE (UNCHANGED) -->
+<img src="images/school.png" alt="School Banner" class="main-image">
+
+<!-- OVERLAY CONTENT -->
+<div class="hero-overlay">
+  <div class="hero-container">
+
+    <!-- LEFT -->
+    <div class="left">
+      <h1>Moving Towards<br>Excellence and<br>Quality Education</h1>
+      <p>
+        At our school, we are dedicated to nurturing the growth of students 
+        through quality education and strong values.
+      </p>
+
+      <a href="contact.html" class="btn">Contact us</a>
+      <a href="programs.html" class="btn">Enroll now!</a>
+    </div>
+
+    <!-- RIGHT SLIDER -->
+    <div class="right">
+      <div class="slider">
+
+        <div class="card active">
+          <h4>ACADEMIC <span>Jan 15, 2026</span></h4>
+          <h2>Classes Suspended</h2>
+          <p>Classes are suspended due to heavy rain.</p>
+        </div>
+
+        <div class="card">
+          <h4>EVENT <span>Feb 10, 2026</span></h4>
+          <h2>Foundation Day</h2>
+          <p>Celebrate with us!</p>
+        </div>
+
+        <div class="card">
+          <h4>NOTICE <span>Mar 1, 2026</span></h4>
+          <h2>Enrollment Open</h2>
+          <p>Apply now for the new school year.</p>
+        </div>
+
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer> 
+  <p>&copy; SUATC | All Rights Reserved</p> 
+</footer>
+
+<!-- SCRIPT -->
+<script>
+let index = 0;
+const slides = document.querySelectorAll(".card");
+
+function showSlide(i) {
+  slides.forEach(slide => slide.classList.remove("active"));
+  slides[i].classList.add("active");
+}
+
+document.querySelector(".next").onclick = () => {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+};
+
+document.querySelector(".prev").onclick = () => {
+  index = (index - 1 + slides.length) % slides.length;
+  showSlide(index);
+};
+
+// AUTO SLIDE
+setInterval(() => {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}, 5000);
+</script>
+
+</body>
+</html>
